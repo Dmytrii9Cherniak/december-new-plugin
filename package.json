@@ -1,12 +1,15 @@
 {
   "name": "december-new-plugin",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "npm run generate-version-file && ng serve",
+    "build": "npm run generate-version-file && ng build",
+    "watch": "npm run generate-version-file && ng build --watch --configuration development",
+    "test": "ng test",
+    "generate-version-file": "npm explore @natec/mef-dev-platform-connector -- npm run generate-version-file",
+    "build:plugin": "npm run generate-version-file && ng build --prod --output-hashing none --single-bundle",
+    "build:plugin:watch": "ng build --output-hashing none --single-bundle --watch --optimization=false"
   },
   "private": true,
   "dependencies": {
@@ -18,6 +21,8 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "@natec/mef-dev-platform-connector": "^15.0.0",
+    "ngx-build-plus": "^15.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

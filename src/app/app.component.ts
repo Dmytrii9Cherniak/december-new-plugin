@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: 'december-new-plugin',
+  template: `<router-outlet></router-outlet>`,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'december-new-plugin';
+
 }

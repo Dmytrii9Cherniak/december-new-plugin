@@ -1,0 +1,53 @@
+<header class="header">
+  <button class="button" (click)="changeTab(1)">
+    Platform data
+  </button>
+  <button class="button" (click)="changeTab(2)">
+    Plugin info
+  </button>
+  <button class="button" (click)="changeTab(3)">
+    Plugin api
+  </button>
+</header>
+
+<main>
+  <div *ngIf="currentTab === 1">
+    <h3> Platform data </h3>
+
+    <table class="table" *ngIf="pluginData">
+      <thead>
+      <tr>
+        <th>Ключ</th>
+        <th>Значення</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let key of getTableKeys()">
+        <td>{{ key }}</td>
+        <td>{{ pluginData[key] !== null ? pluginData[key] : 'Нема значення' }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <img [src]="PlatformHelper.getAssetUrl() + '/images/square.jpg'" alt="blackSquare" class="image">
+
+
+  </div>
+  <div *ngIf="currentTab === 2">
+    <h3> Plugin info </h3>
+  </div>
+  <div *ngIf="currentTab === 3">
+    <h3 class="response"> Response of request {{ requestResponse | json }} </h3>
+  </div>
+
+  <br>
+
+  <div *ngIf="createdResourceItem">
+    {{ createdResourceItem | json }}
+  </div>
+
+  <button (click)="createResource()">
+    Create resource item
+  </button>
+
+</main>
