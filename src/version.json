@@ -8,6 +8,6 @@
     "suffix": "a42e70c-dirty",
     "semverString": null,
     "name": "december-new-plugin",
-    "version": "0.0.2",
+    "version": "0.2.4",
     "main": "main.js"
 }
