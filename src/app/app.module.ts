@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PlatformHelper } from '@natec/mef-dev-platform-connector';
 import { TestComponent } from './components/test/test.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CredInterceptor } from './interceptors/cred.interceptor';
 
@@ -38,11 +37,11 @@ const routes: Routes = PlatformHelper.updatePluginsRoutes([
     RouterModule.forRoot(routes)
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true
+    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CredInterceptor,

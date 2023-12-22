@@ -3,27 +3,44 @@ import {
   HttpInterceptor,
   HttpRequest,
   HttpHandler,
-  HttpEvent,
+  HttpEvent, HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CredInterceptor implements HttpInterceptor {
-  private password: string = 'QwErTy2020';
+  constructor() {}
 
   intercept(
-    request: HttpRequest<any>,
+    req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Basic ${this.password}`,
-      },
+    let authReq = req.clone({
+      headers: req.headers
     });
 
-    console.log('Authorization header:', request.headers.get('Authorization'));
+    // @ts-ignore
+    if(!environment.production && environment?.['bauth']){
+      authReq = req.clone({
+        headers: req.headers
+          // @ts-ignore
+          .set('Authorization', `Basic ${btoa(environment.bauth)}`)
+      })
+    }
 
-    return next.handle(request);
+    return next.handle(authReq).pipe(
+      tap(
+        (event) => {
+        },
+        (err) => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status == 401)
+              console.log('Unauthorized')
+          }
+        }
+      )
+    )
   }
 }

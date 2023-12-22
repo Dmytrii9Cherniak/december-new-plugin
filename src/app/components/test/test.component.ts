@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatformHelper } from '@natec/mef-dev-platform-connector';
 import { PlatformConnectorService } from '../../services/platform-connector.service';
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-test',
@@ -39,7 +40,7 @@ export class TestComponent implements OnInit {
       name: 'Walk dog'
     }
 
-    this.platformConnectorService.HttpClient.post('/api/v2/test/restresource/1', objectCreate).subscribe(value => {
+    this.platformConnectorService.HttpClient.post('http://localhost:82/api/v2/test/restresource/create-item', objectCreate).subscribe(value => {
       console.log(value)
     })
   }

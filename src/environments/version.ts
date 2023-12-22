@@ -1,13 +1,13 @@
 export const PLUGIN_VERSION = {
     "dirty": true,
-    "raw": "a42e70c-dirty",
-    "hash": "a42e70c",
+    "raw": "3bb9f84-dirty",
+    "hash": "3bb9f84",
     "distance": null,
     "tag": null,
     "semver": null,
-    "suffix": "a42e70c-dirty",
+    "suffix": "3bb9f84-dirty",
     "semverString": null,
     "name": "december-new-plugin",
-    "version": "0.0.2",
+    "version": "0.2.9",
     "main": "main.js"
 };
